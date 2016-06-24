@@ -10,7 +10,7 @@
     /* ---------------------------------- Local Functions ---------------------------------- */
     function findByName() {
         $.ajax({
-            url: "http://127.0.0.1:8080",
+            url: "http://10.0.0.4:8080",
             method: "GET",
             data: {"name": $('.search-key').val()},
             dataType: "jsonp",
