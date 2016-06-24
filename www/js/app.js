@@ -11,7 +11,7 @@
     function findByName() {
         $('.name-list').append('<li><a href="#">Searching</a></li>');
         $.ajax({
-            url: "http://10.0.0.4:8080",
+            url: "http://10.0.0.4:3100",
             method: "GET",
             timeout:1000,
             data: {"name": $('.search-key').val()},
