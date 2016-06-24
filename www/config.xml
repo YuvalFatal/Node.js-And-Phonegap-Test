@@ -10,4 +10,5 @@
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://10.0.0.4:3100" />
+    <feature name="http://api.phonegap.com/1.0/network"/>
 </widget>
