@@ -9,6 +9,7 @@
 
     /* ---------------------------------- Local Functions ---------------------------------- */
     function findByName() {
+        $('.name-list').append('<li><a href="#">Searching</a></li>');
         $.ajax({
             url: "http://10.0.0.4:8080",
             method: "GET",
