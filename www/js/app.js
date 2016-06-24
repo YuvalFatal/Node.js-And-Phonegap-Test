@@ -12,7 +12,7 @@
     function findByName() {
         $('.name-list').append('<li><a href="#">Searching</a></li>');
         $.ajax({
-            url: "http://10.0.0.4:3100",
+            url: "http://192.168.43.29:3100",
             method: "GET",
             data: {"name": $('.search-key').val()},
             dataType: "jsonp",
