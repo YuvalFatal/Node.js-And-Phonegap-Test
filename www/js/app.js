@@ -16,6 +16,9 @@
             dataType: "jsonp",
             success: function(data, status) {
                 $('.name-list').append('<li><a href="#">' + data['message'] + '</a></li>');
+            },
+            complete: function(xhr,status){
+                $('.name-list').append('<li><a href="#">' + status + '</a></li>');
             }
         });
     }
