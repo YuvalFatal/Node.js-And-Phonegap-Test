@@ -13,10 +13,12 @@
         $.ajax({
             url: "http://10.0.0.4:8080",
             method: "GET",
+            timeout:1000,
             data: {"name": $('.search-key').val()},
             dataType: "jsonp",
             success: function(data, status) {
-                $('.name-list').append('<li><a href="#">' + data['message'] + '</a></li>');
+                if(status != 'timeout')
+                    $('.name-list').append('<li><a href="#">' + data['message'] + '</a></li>');
             },
             complete: function(xhr,status){
                 $('.name-list').append('<li><a href="#">' + status + '</a></li>');
