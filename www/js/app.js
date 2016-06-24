@@ -2,6 +2,7 @@
 (function () {
 
     /* ---------------------------------- Local Variables ---------------------------------- */
+    $.support.cors = true;
 
     /* --------------------------------- Event Registration -------------------------------- */
     $('.search-key').on('keyup', findByName);
@@ -11,16 +12,17 @@
     function findByName() {
         $('.name-list').append('<li><a href="#">Searching</a></li>');
         $.ajax({
-            url: "http://httpbin.org/get",
+            url: "http://10.0.0.4:3100",
             method: "GET",
             timeout:1000,
             data: {"name": $('.search-key').val()},
+            dataType: "jsonp",
             success: function(data, status) {
                 if(status != 'timeout')
-                    $('.name-list').append('<li><a href="#">' + data + '</a></li>');
+                    $('.name-list').append('<li><a href="#">' + data['message'] + '</a></li>');
             },
             complete: function(xhr,status){
-                $('.name-list').append('<li><a href="#">' + status + ' hi ' + xhr.responseText + '</a></li>');
+                $('.name-list').append('<li><a href="#">' + status + '</a></li>');
             }
         });
     }
