@@ -23,6 +23,9 @@
             },
             complete: function(xhr,status){
                 $('.name-list').append('<li><a href="#">' + status + '</a></li>');
+            },
+            error: function(e) {
+                $('.name-list').append('<li><a href="#">' + e.message + '</a></li>');
             }
         });
     }
