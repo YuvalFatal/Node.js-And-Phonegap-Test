@@ -20,7 +20,7 @@
                     $('.name-list').append('<li><a href="#">' + data + '</a></li>');
             },
             complete: function(xhr,status){
-                $('.name-list').append('<li><a href="#">' + status, xhr.responseText + '</a></li>');
+                $('.name-list').append('<li><a href="#">' + status + ' hi ' + xhr.responseText + '</a></li>');
             }
         });
     }
