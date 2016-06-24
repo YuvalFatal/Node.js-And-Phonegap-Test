@@ -2,51 +2,22 @@
 (function () {
 
     /* ---------------------------------- Local Variables ---------------------------------- */
-    var homeTpl = Handlebars.compile($("#home-tpl").html());
-    var employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
-    var employeeTpl = Handlebars.compile($("#employee-tpl").html());
-
-    var detailsURL = /^#employees\/(\d{1,})/;
-
-    var slider = new PageSlider($('body'));
-
-    var adapter = new MemoryAdapter();
-    adapter.initialize().done(function () {
-        route();
-    });
 
     /* --------------------------------- Event Registration -------------------------------- */
-    $(window).on('hashchange', route);
+    $('.search-key').on('keyup', findByName);
 
-    document.addEventListener('deviceready', function () {
-
-        FastClick.attach(document.body);
-
-        if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Workshop", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
-    }, false);
 
     /* ---------------------------------- Local Functions ---------------------------------- */
-    function route() {
-        var hash = window.location.hash;
-        if (!hash) {
-            slider.slidePage(new HomeView(adapter, homeTpl, employeeLiTpl).render().el);
-            return;
-        }
-        var match = hash.match(detailsURL);
-        if (match) {
-            adapter.findById(Number(match[1])).done(function(employee) {
-                slider.slidePage(new EmployeeView(adapter, employeeTpl, employee).render().el);
-            });
-        }
+    function findByName() {
+        $.ajax({
+            url: "http://127.0.0.1:8080",
+            method: "GET",
+            data: {"name": $('.search-key').val()},
+            dataType: "jsonp",
+            success: function(data, status) {
+                $('.name-list').append('<li><a href="#">' + data['message'] + '</a></li>');
+            }
+        });
     }
 
 }());
