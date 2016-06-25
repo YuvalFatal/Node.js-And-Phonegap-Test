@@ -13,7 +13,7 @@
         $('.name-list').append('<li><a href="#">Searching</a></li>');
         $.ajax({
             url: "http://10.0.0.4:3100",
-            method: "GET",
+            type: "get",
             data: {"name": $('.search-key').val()},
             crossDomain: true,
             dataType: "jsonp",
@@ -24,8 +24,8 @@
             complete: function(xhr,status){
                 $('.name-list').append('<li><a href="#">' + status + '</a></li>');
             },
-            error: function(e) {
-                $('.name-list').append('<li><a href="#">' + e.message + '</a></li>');
+            error: function(error) {
+                $('.name-list').append('<li><a href="#">' + error.message + '</a></li>');
             }
         });
     }
